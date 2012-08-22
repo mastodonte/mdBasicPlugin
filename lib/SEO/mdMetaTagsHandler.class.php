@@ -84,7 +84,7 @@ class mdMetaTagsHandler{
 		}
 		
 		$debug = false;
-		if(isset($options['debug'])){
+		if(isset($options['debug']) && $options['debug']){
 			$debug = true;
 		}
 			
