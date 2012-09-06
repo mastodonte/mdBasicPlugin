@@ -644,4 +644,31 @@ class mdBasicFunction {
     return $dayArray;
   }
 
+  /**
+   * Encrypt password
+   *
+   * @param object $object Object to display
+   */
+  public static function encrypt($string) {
+    return md5(sfConfig::get('app_configuration_MD_SECURITY_KEY') . $string);
+  }
+
+  public static function generateKey($len = 6) {
+    $pass = '';
+    for ($i = 0; $i < $len; $i++) {
+      $pass.= chr(rand(0, 25) + ord('a'));
+    }
+    return $pass;
+  }
+
+  public static function toLink($text) {
+    $text = html_entity_decode($text);
+    $text = " " . $text;
+    $text = eregi_replace('(((f|ht){1}tp://)[-a-zA-Z0-9@:%_+.~#?&//=]+)', '<a href="\1">\1</a>', $text);
+    $text = eregi_replace('(((f|ht){1}tps://)[-a-zA-Z0-9@:%_+.~#?&//=]+)', '<a href="\1">\1</a>', $text);
+    $text = eregi_replace('([[:space:]()[{}])(www.[-a-zA-Z0-9@:%_+.~#?&//=]+)', '\1<a href="http://\2">\2</a>', $text);
+    $text = eregi_replace('([_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3})', '<a href="mailto:\1">\1</a>', $text);
+    return $text;
+  }
+
 }
