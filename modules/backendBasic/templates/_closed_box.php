@@ -1,4 +1,4 @@
-<div class="accordion-header" ajax-url="/backend_dev.php/backendBasic/testAjax">
+<div class="accordion-header" ajax-url="/admin_dev.php/backendBasic/testAjax">
     <div style="height: 50px; margin: 4px;">
         <ul class="md_closed_object">
             <li class="md_img">

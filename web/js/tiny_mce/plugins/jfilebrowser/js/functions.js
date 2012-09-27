@@ -1,6 +1,6 @@
 function verCrearDirectorio()
 {
-    new Ajax.Request('/backend.php/jfilebrowser/templateCrearDirectorio', {
+    new Ajax.Request('/admin.php/jfilebrowser/templateCrearDirectorio', {
         method: 'post',
         onSuccess: function (response){
             $('container_tinyPlugin').update(response.responseText);
@@ -43,7 +43,7 @@ function borrar(form)
 function verCategoria(idcat)
 {
     var view = (arguments[1] === undefined ? 'thumbnails' : arguments[1]);
-    new Ajax.Request('/backend.php/jfilebrowser/verCategoria', {
+    new Ajax.Request('/admin.php/jfilebrowser/verCategoria', {
         method: 'post',
         parameters: 'id=' + idcat + '&view=' + view,
         onSuccess: function (response){
@@ -54,7 +54,7 @@ function verCategoria(idcat)
 
 function verSubirArchivo(idcat)
 {
-    new Ajax.Request('/backend.php/jfilebrowser/templateSubirArchivo', {
+    new Ajax.Request('/admin.php/jfilebrowser/templateSubirArchivo', {
         method: 'post',
         parameters: 'directorio=' + idcat,
         onSuccess: function (response){
@@ -83,7 +83,7 @@ function salvarImagen()
 
 function verThumb(idcat,b)
 {
-    new Ajax.Request('/backend.php/jfilebrowser/verThumb', {
+    new Ajax.Request('/admin.php/jfilebrowser/verThumb', {
         method: 'post',
         parameters: 'set_c=1&id=' + idcat + '&busqueda=' + b,
         onSuccess: function (response){
@@ -94,7 +94,7 @@ function verThumb(idcat,b)
 
 function verLista(idcat,b)
 {
-    new Ajax.Request('/backend.php/jfilebrowser/verLista', {
+    new Ajax.Request('/admin.php/jfilebrowser/verLista', {
         method: 'post',
         parameters: 'set_c=2&id=' + idcat + '&busqueda=' + b,
         onSuccess: function (response){
@@ -105,7 +105,7 @@ function verLista(idcat,b)
 
 function view(directorio, id)
 {
-    new Ajax.Request('/backend.php/jfilebrowser/templateView', {
+    new Ajax.Request('/admin.php/jfilebrowser/templateView', {
         method: 'post',
         parameters: 'name=' + id+'&directorio=' + directorio,
         onSuccess: function (response){
@@ -117,7 +117,7 @@ function view(directorio, id)
 
 function init()
 {
-    var url = (arguments[0] === undefined ? '/backend.php/jfilebrowser/index' : arguments[0]);
+    var url = (arguments[0] === undefined ? '/admin.php/jfilebrowser/index' : arguments[0]);
     new Ajax.Request(url, {
         method: 'post',
         onSuccess: function (response)

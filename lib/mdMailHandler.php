@@ -82,10 +82,10 @@ class mdMailHandler {
     $index = 0;
     foreach ($list as $key => $val) {
       $new_val = "";
-      if ($val === "backend_dev.php") {
+      if ($val === "admin_dev.php") {
         $new_val = "frontend_dev.php";
       } else {
-        if ($val === "backend.php") {
+        if ($val === "admin.php") {
           $new_val = "index.php";
         } else {
           $new_val = $val;

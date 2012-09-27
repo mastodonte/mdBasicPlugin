@@ -40,7 +40,7 @@ var jFileBrowserDialog = {
                     return;
                 }
 
-                new Ajax.Request('/backend.php/jfilebrowser/getUrl', {
+                new Ajax.Request('/admin.php/jfilebrowser/getUrl', {
                     method: 'post',
                     parameters: 'width=' + ancho + '&height=' + alto + '&directory=' + dir + '&name=' + title,
                     onSuccess: function (response){
@@ -52,7 +52,7 @@ var jFileBrowserDialog = {
                 });
 
             }else{
-                path = path.replace("/backend.php", "").replace("/backend_dev.php", "");
+                path = path.replace("/admin.php", "").replace("/admin_dev.php", "");
                 //html = '<span class="mceIcon mce_spellchecker"></span>';
                 html = '<img src="' + path +'" title="' + title +'" alt="' + alt +'" ' + style + ' />';
                 tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
