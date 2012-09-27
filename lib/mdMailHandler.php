@@ -14,9 +14,9 @@ class mdMailHandler {
       $link = self::removeBackendControler($link);
     }
 
-
+    $profile = $mdPassport->getMdUserProfile();
     sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
-    $body = get_partial('mdUserManagement/resetPasswordMailBody', array('link' => $link));
+    $body = get_partial('mdUserManagement/resetPasswordMailBody', array('link' => $link, 'user' => $profile));
     $mdMailXMLHandler = new mdMailXMLHandler();
     $usePhpMailer = sfConfig::get('app_php_mailer_enabled', false);
     if ($usePhpMailer) {

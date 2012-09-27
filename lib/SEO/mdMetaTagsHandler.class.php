@@ -84,7 +84,7 @@ class mdMetaTagsHandler{
 		}
 		
 		$debug = false;
-		if(isset($options['debug'])){
+		if(isset($options['debug']) && $options['debug']){
 			$debug = true;
 		}
 			
@@ -104,21 +104,26 @@ class mdMetaTagsHandler{
 		}
 		foreach($tags as $tag){
 			$inst_source = $prefix . $sources[$tag] . ' ' . $i18nSource .$keys;
-			if($debug) echo $inst_source . ' <=> ' . $lang->__($inst_source);
+			if($debug) echo $inst_source . ' <=> ' . $lang->__($inst_source, $params);
 			if($lang->__($inst_source) != $inst_source and $lang->__($inst_source) != ''){
-				
-				if($tag == 'title'){
-					if(!$preserveActionMetas or $action->getResponse()->getTitle() == ''){
-						$action->getResponse()->setTitle($lang->__($inst_source, $params));
-						if($debug) echo  '  <=> setup title';
+
+				$metas = $action->getResponse()->getMetas();
+				$addMeta = false;
+				if($preserveActionMetas){
+					if(!array_key_exists($tag, $metas)){
+						$addMeta = true;
 					}
-				
 				}else{
-					$metas = $action->getResponse()->getMetas();
-					if(!$preserveActionMetas or !in_array($tag, $metas)){
+					$addMeta = true;
+				}
+
+				if($addMeta){
+					if($tag == 'title')
+						$action->getResponse()->setTitle($lang->__($inst_source, $params));
+					else
 						$action->getResponse()->addMeta($tag, $lang->__($inst_source, $params));
-						if($debug) echo  '  <=> setup ' . $tag;
-					}
+
+					if($debug) echo  '  <=> setup ' . $tag;
 				}
 			}
 			if($debug) echo '<br/>';	
