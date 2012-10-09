@@ -118,7 +118,7 @@ class assetsController {
    */
   public static function cccJS($js_files, $add_use_js=false, $position = null) {
 
-    if(sfConfig::get('app_assetsController_debug', false)){
+    if(sfConfig::get('app_assetsController_debug', false) and $add_use_js){
       foreach($js_files as $file)
         use_javascript('../' . $file, $position);
       return true;
