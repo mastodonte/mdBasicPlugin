@@ -116,7 +116,14 @@ class assetsController {
   /**
    * Combine Compress and Cache (ccc) JS calls
    */
-  public static function cccJS($js_files) {
+  public static function cccJS($js_files, $add_use_js=false, $position = null) {
+
+    if(sfConfig::get('app_assetsController_debug', false)){
+      foreach($js_files as $file)
+        use_javascript('../' . $file, $position);
+      return true;
+    }
+
     $sf_cache_dir   = sfConfig::get('sf_cache_dir');
     $sf_web_dir     = sfConfig::get('sf_web_dir');
     
@@ -179,7 +186,9 @@ class assetsController {
       file_put_contents($compressed_js_path, $content);
       chmod($compressed_js_path, 0777);
     }
-    
+    if($add_use_js === true){
+      use_javascript($returnfilename, $position);
+    }
     return $returnfilename;
   }
 
