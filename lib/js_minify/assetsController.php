@@ -117,6 +117,7 @@ class assetsController {
    * Combine Compress and Cache (ccc) JS calls
    */
   public static function cccJS($js_files) {
+
     $sf_cache_dir   = sfConfig::get('sf_cache_dir');
     $sf_web_dir     = sfConfig::get('sf_web_dir');
     
@@ -179,9 +180,47 @@ class assetsController {
       file_put_contents($compressed_js_path, $content);
       chmod($compressed_js_path, 0777);
     }
-    
+
     return $returnfilename;
   }
+
+
+  /**
+   * Method as helper for Symfony usage:
+   * make use_stylesheet helper function for include css file to sfResponse
+   * debug option support: app_assetsController_debug to include each file separately
+   *
+   */
+  public static function use_cccCss($css_files, $position = '', $media = 'all', $debug = false) {
+    if(sfConfig::get('app_assetsController_debug', $debug)){
+      foreach($css_files as $file => $media){
+        use_stylesheet('../' . $file, $position);
+      }
+    }else{
+      use_stylesheet(self::cccCss($css_files), $position);
+    }
+    return true;
+  }
+
+
+  /**
+   * Method as helper for Symfony usage:
+   * make use_javascript helper function for include css file to sfResponse
+   * debug option support: app_assetsController_debug to include each file separately
+   *
+   */
+  public static function use_cccJs($js_files, $position = '', $debug = false) {
+    if(sfConfig::get('app_assetsController_debug', $debug)){
+      foreach($js_files as $file){
+        use_javascript('../' . $file, $position);
+      }
+    }else{
+      use_javascript(self::cccJS($js_files), $position);
+    }
+    return true;
+  }
+
+
 
   public static function minifyJS($js_content) {
     if (strlen($js_content) > 0) {
