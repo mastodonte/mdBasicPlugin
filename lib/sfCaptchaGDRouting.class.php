@@ -14,19 +14,19 @@
  * @subpackage plugin
  * @author     Alex Kubyshkin <glint@techinfo.net.ru>
  */
-class sfCaptchaGDRouting
-{
+class sfCaptchaGDRouting {
+
   /**
    * Listens to the routing.load_configuration event.
    *
    * @param sfEvent An sfEvent instance
    */
-  static public function listenToRoutingLoadConfigurationEvent(sfEvent $event)
-  {
+  static public function listenToRoutingLoadConfigurationEvent(sfEvent $event) {
     $r = $event->getSubject();
 
     // preprend our routes
     //$r->prependRoute('sf_captchagd', '/captcha', array('module' => 'sfCaptchaGD', 'action' => 'GetImage'));
     $r->prependRoute('sf_captchagd', new sfRequestRoute('/captcha', array('module' => 'sfCaptchaGD', 'action' => 'GetImage')));
   }
+
 }

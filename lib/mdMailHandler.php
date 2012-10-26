@@ -25,11 +25,11 @@ class mdMailHandler {
       $from = (string) $mdMailXMLHandler->getFrom();
       $email = (string) $mdMailXMLHandler->getEmail();
       $message = Swift_Message::newInstance()
-        ->setSubject($subject)
-        ->setFrom(array($email => $from))
-        ->setTo(array($mdPassport->retrieveMdUser()->getEmail()))
-        ->setContentType("text/html")
-        ->setBody($body);
+              ->setSubject($subject)
+              ->setFrom(array($email => $from))
+              ->setTo(array($mdPassport->retrieveMdUser()->getEmail()))
+              ->setContentType("text/html")
+              ->setBody($body);
 
       $mailer = sfContext::getInstance()->getMailer();
       if ($realtime) {
@@ -63,11 +63,11 @@ class mdMailHandler {
       $from = (string) $mdMailXMLHandler->getFrom();
       $email = (string) $mdMailXMLHandler->getEmail();
       $message = Swift_Message::newInstance()
-        ->setSubject($subject)
-        ->setFrom(array($email => $from))
-        ->setTo(array($mdPassport->retrieveMdUser()->getEmail()))
-        ->setContentType("text/html")
-        ->setBody($body);
+              ->setSubject($subject)
+              ->setFrom(array($email => $from))
+              ->setTo(array($mdPassport->retrieveMdUser()->getEmail()))
+              ->setContentType("text/html")
+              ->setBody($body);
       if ($realtime) {
         $mailer->sendNextImmediately()->send($message);
       } else {
@@ -134,15 +134,15 @@ class mdMailHandler {
     $mailer = sfContext::getInstance()->getMailer();
 
     $message = Swift_Message::newInstance()
-      ->setSubject($subject)
-      ->setSender($from['email'], $from['name'])
-      ->setFrom($from['email'], $from['name'])
-      ->setTo($to)
-      ->setContentType("text/html")
-      ->setBody($body);
+            ->setSubject($subject)
+            ->setSender($from['email'], $from['name'])
+            ->setFrom($from['email'], $from['name'])
+            ->setTo($to)
+            ->setContentType("text/html")
+            ->setBody($body);
 
-		if($replyTo !== false)
-			$message->setReplyTo($from['email']);
+    if ($replyTo !== false)
+      $message->setReplyTo($from['email']);
 
     /* 			if(!$needReply){
       var_dump('estoy aca');

@@ -36,9 +36,9 @@ class mdBasicFunction {
    */
   public static function basic_json_response($response, $options) {
     return json_encode(array(
-      "response" => ($response ? "OK" : "ERROR"),
-      "options" => $options
-    ));
+                "response" => ($response ? "OK" : "ERROR"),
+                "options" => $options
+            ));
   }
 
   /**
@@ -495,7 +495,7 @@ class mdBasicFunction {
   // Original PHP code by Chirp Internet: www.chirp.com.au
   // Please acknowledge use of this code by including this header.
 
-  public static function mdTruncateText($string, $limit, $break=" ", $pad="...") {
+  public static function mdTruncateText($string, $limit, $break = " ", $pad = "...") {
     // return with no change if string is shorter than $limit
     if (strlen($string) <= $limit)
       return $string;
@@ -545,13 +545,13 @@ class mdBasicFunction {
   public static function getdomain($url) {
 
     preg_match(
-      "/^(http:\/\/|https:\/\/)?([^\/]+)/i", $url, $matches
+            "/^(http:\/\/|https:\/\/)?([^\/]+)/i", $url, $matches
     );
 
     $host = $matches[2];
 
     preg_match(
-      "/[^\.\/]+\.[^\.\/]+$/", $host, $matches
+            "/[^\.\/]+\.[^\.\/]+$/", $host, $matches
     );
     if (!isset($matches[0]))
       return "";
