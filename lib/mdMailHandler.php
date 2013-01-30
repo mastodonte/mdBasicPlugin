@@ -188,10 +188,9 @@ class mdMailHandler {
 
     foreach ($recipients as $recipient) {
 
-      
-      $headers = 'MIME-Version: 1.0' . "\n";
-      $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-      $headers = "From:" . $from['name'] . " <" . $sendermail . ">\n";
+      $headers = "MIME-Version: 1.0\r\n";
+      $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+      $headers .= "From:" . $from['name'] . " <" . $sendermail . ">\n";
       $headers .= "Reply-To: ".$from['email'] . "\n";
       
       // Mail it
