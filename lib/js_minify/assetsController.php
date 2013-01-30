@@ -191,13 +191,13 @@ class assetsController {
    * debug option support: app_assetsController_debug to include each file separately
    *
    */
-  public static function use_cccCss($css_files, $position = null, $media = 'all', $debug = false) {
+  public static function use_cccCss($css_files, $position = '', $media = 'all', $debug = false) {
     if(sfConfig::get('app_assetsController_debug', $debug)){
       foreach($css_files as $file => $media){
-        use_stylesheet($file, $position);
+        use_stylesheet('../' . $file, $position);
       }
     }else{
-      use_stylesheet(self::cccCss($filesCSS), $position);
+      use_stylesheet(self::cccCss($css_files), $position);
     }
     return true;
   }
@@ -209,13 +209,13 @@ class assetsController {
    * debug option support: app_assetsController_debug to include each file separately
    *
    */
-  public static function use_cccJs($js_files, $position = null, $debug = false) {
+  public static function use_cccJs($js_files, $position = '', $debug = false) {
     if(sfConfig::get('app_assetsController_debug', $debug)){
       foreach($js_files as $file){
-        use_javascript($file);
+        use_javascript('../' . $file, $position);
       }
     }else{
-      use_javascript(self::cssJs($js_files), $position);
+      use_javascript(self::cccJS($js_files), $position);
     }
     return true;
   }
