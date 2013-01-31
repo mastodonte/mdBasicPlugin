@@ -1,0 +1,37 @@
+# lapeSSLFilterPlugin (for symfony 1.3/1.4) #
+
+This simple filter redirects all actions that has option 'is_ssl' = true to https requests and https requests (with 'is_ssl' = false) to non-https.
+
+## Installation ##
+
+  * Install the plugin
+    
+        symfony plugin:install lapeSSLFilterPlugin
+
+  * Activate the plugin adding next to filters.yml
+  
+        [yaml]
+        rendering: ~
+		security:  ~
+
+		secure:
+		  class: lapeSSLSecureFilter
+
+		cache:     ~
+		execution: ~
+
+  * Enable ssl for module/action (default module) apps/frontend/modules/default/config/security.yml:
+  
+		[yaml]
+		# for the whole module
+		all:
+		  is_ssl: true
+
+		# just one action
+		login:
+		  is_ssl: true
+		
+  * Clear you cache
+
+        symfony cc
+
