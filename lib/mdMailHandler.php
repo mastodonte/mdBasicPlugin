@@ -254,10 +254,16 @@ class mdMailHandler {
     else
       $sendUsingPhpMail = sfConfig::get('app_php_mailer_enabled', false);
 
+    if (isset($options['realtime']))
+      $realtime = true;
+    else
+      $realtime = null;
+
+
     if ($sendUsingPhpMail)
       return self::sendPhpMail($recipients, $sender, $subject, $body);
     else
-      return self::sendSwiftMail($sender, $recipients, $subject, $body, true, $replyTo, $attachments);
+      return self::sendSwiftMail($sender, $recipients, $subject, $body, true, $replyTo, $attachments, $realtime);
   }
 
 }
