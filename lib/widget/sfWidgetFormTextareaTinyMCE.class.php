@@ -95,6 +95,8 @@ class sfWidgetFormTextareaTinyMCE extends sfWidgetFormTextarea
     forced_root_block : "",
     theme_advanced_toolbar_align:      "left",
     theme_advanced_statusbar_location: "bottom",
+    plugins:"imageupload",                                              
+    theme_advanced_buttons4 : "imageupload",
     relative_urls : false,
     theme_advanced_resizing:           true
     %s
@@ -135,6 +137,8 @@ EOF
     init_instance_callback:            "myCustomInitInstance",
     theme_advanced_statusbar_location: "bottom",
     relative_urls : false,
+    plugins:"imageupload",                                              
+    theme_advanced_buttons4 : "imageupload",
     theme_advanced_resizing:           true
     %s
   });
