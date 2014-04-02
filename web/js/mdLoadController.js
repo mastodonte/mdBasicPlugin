@@ -14,7 +14,7 @@ mdLoadController.prototype = {
         $(window).scroll(function(){
             $('#upload_container').css("top", $(window).height()/2 + $(window).scrollTop() + "px");
             $('#message_container').css("top", $(window).height()/2 + $(window).scrollTop() + "px");
-            $('#message_container').live('click', function(){ mdHideMessage(); });
+            $('#message_container').click(function(){ mdHideMessage(); });
         });
     },
 
