@@ -66,7 +66,7 @@ class mdMetaTagsHandler{
 			$prefix = $options['prefix'];
 						
 		if(!isset($options['tags']))
-			$tags = sfConfig::get('app_Metas_tags',array('title','description'));
+			$tags = sfConfig::get('app_Metas_tags',array('title','description', 'keywords'));
 		else
 			$tags = $options['tags'];
 		
@@ -88,14 +88,14 @@ class mdMetaTagsHandler{
 			$debug = true;
 		}
 			
-		$sources_default = sfConfig::get('app_Metas_sources',array('title'=>'title', 'description'=>'description'));
+		$sources_default = sfConfig::get('app_Metas_sources',array('title'=>'title', 'description'=>'description', 'keywords'=>'keywords'));
 		
 		foreach($tags as $tag){
 			if(!isset($sources[$tag]))
 				$sources[$tag] = $sources_default[$tag];
 		}
 
-		if(sfConfig::get('app_Metas_addParameterToSource', false) and count($params)>0){
+		if(sfConfig::get('app_Metas_addParameterToSource', true) and count($params)>0){
 			$keys = array_keys($params);
 			$keys = implode(' ',$keys);
 			$keys = ' ' . $keys;
