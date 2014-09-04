@@ -16,12 +16,13 @@ mdTranslatorViewHandler.prototype = {
             icons: false,
             header: 'div.accordion-header',
             autoHeight: false,
-            changestart: function(event, ui){
+            change: function(event, ui){
                 var page = $(this).find('.ui-state-active').attr('text-page');
 
                 if($(ui.oldContent).length > 0){
                     $(ui.oldContent).html('');
                 }
+                
                 if(page !== undefined){
                     self.setActivatedContent(ui.newContent);
                     self.loadTexts(page, ui.newContent);
@@ -51,7 +52,9 @@ mdTranslatorViewHandler.prototype = {
     },
 
     init: function(){
-        $(this.containerId).accordion('destroy').accordion(this.accordion_options);
+        if($(this.containerId).is('.ui-accordion'))
+            (this.containerId).accordion('destroy');
+        $(this.containerId).accordion(this.accordion_options);
     },
 
     getTexts: function(obj){
@@ -65,7 +68,11 @@ mdTranslatorViewHandler.prototype = {
                   $(element).remove();
                   $(parent).remove();
                 });
-                $(this.containerId).accordion('destroy').accordion(this.accordion_options);
+                
+                if($(this.containerId).is('.ui-accordion'))
+                    $(this.containerId).accordion('destroy');
+
+                $(this.containerId).accordion(this.accordion_options);
             }
         }
     },
@@ -103,7 +110,12 @@ mdTranslatorViewHandler.prototype = {
             success: function(html){
                 mdHideLoading();                
                 $('#datos').append(html);
-                $(self.containerId).accordion('destroy').accordion(self.accordion_options);
+                
+                if($(self.containerId).is('.ui-accordion'))
+                    $(self.containerId).accordion('destroy');
+
+                $(self.containerId).accordion(self.accordion_options);
+                //$(self.containerId).accordion('destroy').accordion(self.accordion_options);
             }
         });
     },
