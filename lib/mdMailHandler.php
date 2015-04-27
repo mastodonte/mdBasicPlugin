@@ -142,7 +142,7 @@ class mdMailHandler {
             ->setBody($body);
 
     if ($replyTo !== false)
-      $message->setReplyTo($from['email']);
+      $message->setReplyTo($replyTo);
 
     /* 			if(!$needReply){
       var_dump('estoy aca');
