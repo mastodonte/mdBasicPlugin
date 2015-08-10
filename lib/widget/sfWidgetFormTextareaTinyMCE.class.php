@@ -98,7 +98,8 @@ class sfWidgetFormTextareaTinyMCE extends sfWidgetFormTextarea
     plugins:"imageupload",                                              
     theme_advanced_buttons4 : "imageupload",
     relative_urls : false,
-    theme_advanced_resizing:           true
+    theme_advanced_resizing:           true,
+    remove_script_host: false
     %s
   });
 function myCustomInit() {
